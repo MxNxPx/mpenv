@@ -1,0 +1,96 @@
+bootcmd:
+  - "curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -"
+  - "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -"
+apt:
+  sources:
+    kubernetes:
+      source: "deb https://apt.kubernetes.io/ kubernetes-kinetic main"
+    docker:
+      source: "deb [arch=amd64] https://download.docker.com/linux/ubuntu kinetic stable"
+package_update: true
+packages:
+  - containerd.io
+  - cowsay
+  - docker-ce
+  - docker-ce-cli
+  - git
+  - jq
+  - make
+  - pacman
+  - pv
+  - tmux
+  - wget
+write_files:
+  - path: /etc/sysctl.d/vm-max_map_count.conf
+    content: |
+      vm.max_map_count=524288
+  - path: /etc/sysctl.d/inotify.conf
+    content: |
+      fs.inotify.max_user_watches = 131072
+      fs.inotify.max_user_instances = 131072
+  - path: /etc/sysctl.d/fs-file-max.conf
+    content: |
+      fs.file-max=131072
+  - path: /etc/security/limits.d/global.conf
+    content: |
+      * hard nofile 131072
+      * soft nofile 131072
+      * hard nproc 8192
+      * soft nproc 8192
+  - path: /etc/sysctl.d/k8s.conf
+    content: |
+      net.bridge.bridge-nf-call-ip6tables = 1
+      net.bridge.bridge-nf-call-iptables = 1
+  - path: /etc/docker/daemon.json
+    content: |
+      {
+        "exec-opts": ["native.cgroupdriver=systemd"],
+        "log-driver": "json-file",
+        "log-opts": {
+            "max-size": "100m"
+        },
+        "storage-driver": "overlay2"
+      }
+  - path: /root/.tool-versions
+    content: |
+      ##grep -v '^#' ~/.tool-versions|while read -r line; do NAME=$(echo $line|awk '{print $1}'); URL=$(echo $line|grep -o "#https://.*$"|sed 's/^#//g'); echo "[*] $NAME $URL"; asdf plugin add $NAME $URL; done
+      helm 3.10.2
+      helm-diff 3.6.0
+      helmfile 0.148.1
+      flux2 0.37.0
+      k3d 5.4.6
+      kind 0.17.0
+      krew 0.4.3
+      kubectl 1.25.4
+      kustomize 4.5.7
+      nova 3.4.2
+  - path: /root/krew-plugin-list.txt
+    content: |
+      ctx
+      df-pv
+      get-all
+      grep
+      images
+      node-shell
+      ns
+      pod-dive
+      stern
+      view-secret
+      whoami
+  - path: /root/final-setup.sh
+    content: |
+      export PATH=$PATH:/root/.asdf/bin
+      cat /root/.tool-versions | sed -n 's/^##\(.*\)$/\1/p' | sh
+      asdf install
+      kubectl krew install < /root/krew-plugin-list.txt
+      asdf reshim
+      echo "[*] MAKE SURE YOU EXPORT ENV VARS BEFORE DOING ANYTHING!!!"
+      echo "git clone https://repo1.dso.mil/platform-one/big-bang/bigbang bigbang-upstream"
+runcmd:
+- sed -i '/^# end of pam-auth-update config/isession required        pam_limits.so' /etc/pam.d/common-session
+- printf "xt_REDIRECT\nxt_owner\nxt_statistic\n" | sudo tee -a /etc/modules
+- curl -sLo /usr/local/share/demo-magic.sh https://raw.githubusercontent.com/paxtonhare/demo-magic/master/demo-magic.sh
+- git clone https://github.com/MxNxPx/mpenv.git /root/workdir
+- git clone https://github.com/asdf-vm/asdf.git /root/.asdf --branch v0.10.2
+- echo ". /root/.asdf/asdf.sh" >> /root/.bashrc
+final_message: "[*] System setup complete | uptime: $UPTIME"
