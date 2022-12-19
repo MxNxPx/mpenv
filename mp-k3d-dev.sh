@@ -30,7 +30,7 @@ echo "creating k3d cluster"
 k3d_command="k3d cluster create --servers 1  --agents 3"
 # Volumes to support Twistlock defenders
 #k3d_command+=" -v /etc:/etc:*\;agent:* -v /dev/log:/dev/log:*\;agent:* -v /run/systemd/private:/run/systemd/private:*\;agent:*"
-k3d_command+=" -v /etc/machine-id:/etc/machine-id    -v ${IMAGE_CACHE}:/var/lib/rancher/k3s/agent/containerd/io.containerd.content.v1.content"
+k3d_command+=" -v /etc/machine-id:/etc/machine-id    -v /${IMAGE_CACHE}:/var/lib/rancher/k3s/agent/containerd/io.containerd.content.v1.content"
 # Disable traefik and metrics-server
 k3d_command+=" --k3s-arg "--disable=traefik@server:0"   --k3s-arg "--disable=metrics-server@server:0""
 # Port mappings to support Istio ingress + API access

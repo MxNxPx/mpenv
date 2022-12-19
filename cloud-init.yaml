@@ -85,7 +85,7 @@ write_files:
       kubectl krew install < /root/krew-plugin-list.txt
       asdf reshim
       echo "[*] MAKE SURE YOU EXPORT ENV VARS BEFORE DOING ANYTHING!!!"
-      echo "git clone https://repo1.dso.mil/platform-one/big-bang/bigbang bigbang-upstream"
+      echo "git clone https://repo1.dso.mil/platform-one/big-bang/bigbang workdir/bigbang-upstream"
 runcmd:
 - sed -i '/^# end of pam-auth-update config/isession required        pam_limits.so' /etc/pam.d/common-session
 - printf "xt_REDIRECT\nxt_owner\nxt_statistic\n" | sudo tee -a /etc/modules
