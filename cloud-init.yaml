@@ -14,8 +14,10 @@ packages:
   - docker-ce
   - docker-ce-cli
   - git
+  - golang
   - jq
   - make
+  - npm
   - pacman
   - pv
   - tmux
@@ -53,7 +55,10 @@ write_files:
       }
   - path: /root/.tool-versions
     content: |
-      ##grep -v '^#' ~/.tool-versions|while read -r line; do NAME=$(echo $line|awk '{print $1}'); URL=$(echo $line|grep -o "#https://.*$"|sed 's/^#//g'); echo "[*] $NAME $URL"; asdf plugin add $NAME $URL; done
+      ## grep -v '^#' ~/.tool-versions|while read -r line; do NAME=$(echo $line|awk '{print $1}'); URL=$(echo $line|grep -o "#https://.*$"|sed 's/^#//g'); echo "[*] $NAME $URL"; asdf plugin add $NAME $URL; done
+      ## asdf install
+      ## kubectl krew install < /root/krew-plugin-list.txt
+      ## asdf reshim
       helm 3.10.2
       helm-diff 3.6.0
       helmfile 0.148.1
@@ -79,13 +84,13 @@ write_files:
       whoami
   - path: /root/final-setup.sh
     content: |
-      export PATH=$PATH:/root/.asdf/bin
-      cat /root/.tool-versions | sed -n 's/^##\(.*\)$/\1/p' | sh
-      asdf install
-      kubectl krew install < /root/krew-plugin-list.txt
-      asdf reshim
       echo "[*] MAKE SURE YOU EXPORT ENV VARS BEFORE DOING ANYTHING!!!"
       echo "git clone https://repo1.dso.mil/platform-one/big-bang/bigbang workdir/bigbang-upstream"
+      export PATH=$PATH:/root/.asdf/bin
+      if [[ -z "$(grep "export -f asdfu" /root/.bashrc)" ]]; then
+        curl -sL https://gist.githubusercontent.com/MxNxPx/918457c65a5708d13621093af879e65a/raw/asdf-bash-fun | /bin/bash
+      fi
+      exec bash -c asdfu
 runcmd:
 - sed -i '/^# end of pam-auth-update config/isession required        pam_limits.so' /etc/pam.d/common-session
 - printf "xt_REDIRECT\nxt_owner\nxt_statistic\n" | sudo tee -a /etc/modules
