@@ -86,6 +86,7 @@ write_files:
     content: |
       echo "[*] MAKE SURE YOU EXPORT ENV VARS BEFORE DOING ANYTHING!!!"
       echo "git clone https://repo1.dso.mil/platform-one/big-bang/bigbang workdir/bigbang-upstream"
+      read -p "[*] Press any key to continue... " -n1 -s
       export PATH=$PATH:/root/.asdf/bin
       if [[ -z "$(grep "export -f asdfu" /root/.bashrc)" ]]; then
         curl -sL https://gist.githubusercontent.com/MxNxPx/918457c65a5708d13621093af879e65a/raw/asdf-bash-fun | /bin/bash
