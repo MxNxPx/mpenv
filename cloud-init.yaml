@@ -55,10 +55,10 @@ write_files:
       }
   - path: /root/.tool-versions
     content: |
-      ## grep -v '^#' ~/.tool-versions|while read -r line; do NAME=$(echo $line|awk '{print $1}'); URL=$(echo $line|grep -o "#https://.*$"|sed 's/^#//g'); echo "[*] $NAME $URL"; asdf plugin add $NAME $URL; done
-      ## asdf install
-      ## kubectl krew install < /root/krew-plugin-list.txt
-      ## asdf reshim
+      ##asdfdsa## grep -v '^#' ~/.tool-versions|while read -r line; do NAME=$(echo $line|awk '{print $1}'); URL=$(echo $line|grep -o "#https://.*$"|sed 's/^#//g'); echo "[*] $NAME $URL"; asdf plugin add $NAME $URL; done
+      ##asdfdsa## asdf install
+      ##asdfdsa## kubectl krew install < /root/krew-plugin-list.txt
+      ##asdfdsa## asdf reshim
       helm 3.10.2
       helm-diff 3.6.0
       helmfile 0.148.1
@@ -66,7 +66,8 @@ write_files:
       k3d 5.4.6
       kind 0.17.0
       krew 0.4.3
-      kubectl 1.25.4
+      kubectl 1.25.4 system
+      kube-dump 1.1.2 system #https://github.com/MxNxPx/asdf-kube-dump.git
       kustomize 4.5.7
       nova 3.4.2
   - path: /root/krew-plugin-list.txt
@@ -86,12 +87,8 @@ write_files:
     content: |
       echo "[*] MAKE SURE YOU EXPORT ENV VARS BEFORE DOING ANYTHING!!!"
       echo "git clone https://repo1.dso.mil/platform-one/big-bang/bigbang workdir/bigbang-upstream"
-      read -p "[*] Press any key to continue... " -n1 -s
-      export PATH=$PATH:/root/.asdf/bin
-      if [[ -z "$(grep "export -f asdfu" /root/.bashrc)" ]]; then
-        curl -sL https://gist.githubusercontent.com/MxNxPx/918457c65a5708d13621093af879e65a/raw/asdf-bash-fun | /bin/bash
-      fi
-      exec bash -c asdfu
+      read -p "[*] Press any key to continue... " -n1 -s; echo
+      asdfdsa
 runcmd:
 - sed -i '/^# end of pam-auth-update config/isession required        pam_limits.so' /etc/pam.d/common-session
 - printf "xt_REDIRECT\nxt_owner\nxt_statistic\n" | sudo tee -a /etc/modules
@@ -99,5 +96,8 @@ runcmd:
 - curl -sLo /usr/local/share/demo-magic.sh https://raw.githubusercontent.com/paxtonhare/demo-magic/master/demo-magic.sh
 - git clone https://github.com/MxNxPx/mpenv.git /root/workdir
 - git clone https://github.com/asdf-vm/asdf.git /root/.asdf --branch v0.10.2
-- echo ". /root/.asdf/asdf.sh" >> /root/.bashrc
+- echo '. /root/.asdf/asdf.sh' >> /root/.bashrc
+- echo '. /root/.asdf/completions/asdf.bash' >> /root/.bashrc
+- echo '. /root/.asdf/lib/asdf-bash-fun.bash' >> /root/.bashrc
+- curl -sLo /root/.asdf/lib/asdf-bash-fun.bash https://gist.githubusercontent.com/MxNxPx/0e68b32f399736a60bb53657bea11ca7/raw/asdf-bash-fun
 final_message: "[*] System setup complete | uptime: $UPTIME"
