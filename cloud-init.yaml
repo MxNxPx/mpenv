@@ -100,4 +100,5 @@ runcmd:
 - git clone https://github.com/MxNxPx/mpenv.git /root/workdir
 - git clone https://github.com/asdf-vm/asdf.git /root/.asdf --branch v0.10.2
 - echo ". /root/.asdf/asdf.sh" >> /root/.bashrc
+- echo ". /root/.asdf/completions/asdf.bash" >> /root/.bashrc
 final_message: "[*] System setup complete | uptime: $UPTIME"
