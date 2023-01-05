@@ -1,0 +1,6 @@
+helm 3.8.0
+helm-diff 3.4.1
+kind 0.11.1
+krew 0.4.3
+kubectl 1.19.11
+nova 3.0.1
