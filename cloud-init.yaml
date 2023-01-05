@@ -93,11 +93,11 @@ runcmd:
 - sed -i '/^# end of pam-auth-update config/isession required        pam_limits.so' /etc/pam.d/common-session
 - printf "xt_REDIRECT\nxt_owner\nxt_statistic\n" | sudo tee -a /etc/modules
 - sysctl --system
-- curl -sLo /usr/local/share/demo-magic.sh https://raw.githubusercontent.com/paxtonhare/demo-magic/master/demo-magic.sh
 - git clone https://github.com/MxNxPx/mpenv.git /root/workdir
 - git clone https://github.com/asdf-vm/asdf.git /root/.asdf --branch v0.10.2
 - echo '. /root/.asdf/asdf.sh' >> /root/.bashrc
 - echo '. /root/.asdf/completions/asdf.bash' >> /root/.bashrc
 - echo '. /root/.asdf/lib/asdf-bash-fun.bash' >> /root/.bashrc
 - curl -sLo /root/.asdf/lib/asdf-bash-fun.bash https://gist.githubusercontent.com/MxNxPx/0e68b32f399736a60bb53657bea11ca7/raw/asdf-bash-fun
+- curl -sLo /usr/local/share/demo-magic.sh https://raw.githubusercontent.com/paxtonhare/demo-magic/master/demo-magic.sh
 final_message: "[*] System setup complete | uptime: $UPTIME"
