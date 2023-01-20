@@ -55,7 +55,7 @@ write_files:
       }
   - path: /root/.tool-versions
     content: |
-      ##asdfdsa## grep -v '^#' ~/.tool-versions|while read -r line; do NAME=$(echo $line|awk '{print $1}'); URL=$(echo $line|grep -o "#https://.*$"|sed 's/^#//g'); echo "[*] $NAME $URL"; asdf plugin add $NAME $URL; done
+      ##asdfdsa## grep -v '^#' ~/.tool-versions|while read -r line; do NAME=$(echo $line|awk '{print $1}'); URL=$(echo $line|grep -o "#https://.*$"|sed 's/^#//g'); echo "[*] adding asdf plugin $NAME $URL"; asdf plugin add $NAME $URL; done
       ##asdfdsa## asdf install
       ##asdfdsa## kubectl krew install < /root/krew-plugin-list.txt
       ##asdfdsa## asdf reshim
