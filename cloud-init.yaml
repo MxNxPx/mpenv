@@ -86,14 +86,13 @@ write_files:
   - path: /root/final-setup.sh
     content: |
       echo "[*] MAKE SURE YOU EXPORT ENV VARS BEFORE DOING ANYTHING!!!"
-      echo "git clone https://repo1.dso.mil/platform-one/big-bang/bigbang workdir/bigbang-upstream"
+      echo "git clone https://repo1.dso.mil/platform-one/big-bang/bigbang /root/bigbang-upstream"
       read -p "[*] Press any key to continue... " -n1 -s; echo
       asdfdsa
 runcmd:
 - sed -i '/^# end of pam-auth-update config/isession required        pam_limits.so' /etc/pam.d/common-session
 - printf "xt_REDIRECT\nxt_owner\nxt_statistic\n" | sudo tee -a /etc/modules
 - sysctl --system
-- git clone https://github.com/MxNxPx/mpenv.git /root/workdir
 - git clone https://github.com/asdf-vm/asdf.git /root/.asdf --branch v0.10.2
 - echo '. /root/.asdf/asdf.sh' >> /root/.bashrc
 - echo '. /root/.asdf/completions/asdf.bash' >> /root/.bashrc
