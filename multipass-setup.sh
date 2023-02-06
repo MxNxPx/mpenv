@@ -1,6 +1,6 @@
 #!/bin/bash
 NAME=mpenv
-IMAGE=22.10
+IMAGE=20.04
 CPU=8
 MEM=24G
 DISK=99G

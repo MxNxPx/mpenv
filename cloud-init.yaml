@@ -4,9 +4,9 @@ bootcmd:
 apt:
   sources:
     kubernetes:
-      source: "deb https://apt.kubernetes.io/ kubernetes-kinetic main"
+      source: "deb https://apt.kubernetes.io/ kubernetes-xenial main"
     docker:
-      source: "deb [arch=amd64] https://download.docker.com/linux/ubuntu kinetic stable"
+      source: "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
 package_update: true
 packages:
   - containerd.io
@@ -21,6 +21,7 @@ packages:
   - pacman
   - pv
   - tmux
+  - tree
   - wget
 write_files:
   - path: /etc/sysctl.d/vm-max_map_count.conf
@@ -57,12 +58,16 @@ write_files:
     content: |
       ##asdfdsa## grep -v '^#' ~/.tool-versions|while read -r line; do NAME=$(echo $line|awk '{print $1}'); URL=$(echo $line|grep -o "#https://.*$"|sed 's/^#//g'); echo "[*] adding asdf plugin $NAME $URL"; asdf plugin add $NAME $URL; done
       ##asdfdsa## asdf install
+      ##asdfdsa## asdf direnv setup --shell bash --version latest
       ##asdfdsa## kubectl krew install < /root/krew-plugin-list.txt
       ##asdfdsa## asdf reshim
+      bat 0.22.1
+      bottom 0.8.0
+      direnv 2.32.2
+      flux2 0.37.0
       helm 3.10.2
       helm-diff 3.6.0
       helmfile 0.148.1
-      flux2 0.37.0
       k3d 5.4.6
       kind 0.17.0
       krew 0.4.3
