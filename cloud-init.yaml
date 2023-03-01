@@ -14,10 +14,8 @@ packages:
   - docker-ce
   - docker-ce-cli
   - git
-  - golang
   - jq
   - make
-  - npm
   - pacman
   - pv
   - tmux
@@ -65,6 +63,7 @@ write_files:
       bottom 0.8.0
       direnv 2.32.2
       flux2 0.37.0
+      golang 1.19.6
       helm 3.10.2
       helm-diff 3.6.0
       helmfile 0.148.1
@@ -74,6 +73,7 @@ write_files:
       kubectl 1.25.4 system
       kube-dump 1.1.2 system #https://github.com/MxNxPx/asdf-kube-dump.git
       kustomize 4.5.7
+      nodejs 19.7.0
       nova 3.4.2
   - path: /root/krew-plugin-list.txt
     content: |
@@ -92,6 +92,7 @@ write_files:
     content: |
       echo "[*] MAKE SURE YOU EXPORT ENV VARS BEFORE DOING ANYTHING!!!"
       echo "git clone https://repo1.dso.mil/platform-one/big-bang/bigbang /root/bigbang-upstream"
+      echo "git clone --branch bigbang-component https://github.com/defenseunicorns/zarf.git"
       read -p "[*] Press any key to continue... " -n1 -s; echo
       asdfdsa
 runcmd:
