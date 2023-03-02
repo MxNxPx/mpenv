@@ -4,7 +4,7 @@ multipass dev environment
 ## setup
 
 ```sh
-bash multipass-setup.sh
+date; time bash multipass-setup.sh
 multipass shell mpenv
 sudo su -
 bash final-setup.sh
@@ -19,7 +19,7 @@ cd ~/workdir
 
 # build zarf
 cd zarf
-time make init-package
+date; time make init-package
 export PATH=$(pwd)/build:$PATH
 ln -s $(pwd)/build/zarf-init-amd64-*.tar.zst ~/.zarf-cache/
 
@@ -36,11 +36,11 @@ cd ../zarf-package-big-bang/
 time make build
 
 # cluster setup
-time k3d cluster create
-time zarf init --confirm --components git-server
+date; time k3d cluster create
+date; time zarf init --confirm --components git-server
 
 # deploy bb
-time zarf package deploy --confirm $(ls -1 build/zarf-package-big-bang-*.tar.zst)
+date; time zarf package deploy --confirm $(ls -1 build/zarf-package-big-bang-*.tar.zst)
 ```
 
 ## teardown

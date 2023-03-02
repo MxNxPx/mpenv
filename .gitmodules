@@ -1,9 +1,9 @@
  [submodule "zarf"]
-     path = zarf
-     url = https://github.com/defenseunicorns/zarf.git
+	path = zarf
+	url = https://github.com/defenseunicorns/zarf.git
      branch = bigbang-component
 
  [submodule "zarf-package-big-bang"]
-     path = zarf-package-big-bang
-     url = https://github.com/defenseunicorns/zarf-package-big-bang
+	path = zarf-package-big-bang
+	url = https://github.com/defenseunicorns/zarf-package-big-bang
      branch = bigbang-component
