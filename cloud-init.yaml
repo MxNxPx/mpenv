@@ -93,6 +93,7 @@ write_files:
       echo "[*] MAKE SURE YOU EXPORT ENV VARS BEFORE DOING ANYTHING!!!"
       echo "git clone https://repo1.dso.mil/platform-one/big-bang/bigbang /root/bigbang-upstream"
       echo "git clone --branch bigbang-component https://github.com/defenseunicorns/zarf.git"
+      echo "git clone --branch bigbang-component https://github.com/defenseunicorns/zarf-package-big-bang"
       read -p "[*] Press any key to continue... " -n1 -s; echo
       asdfdsa
 runcmd:
