@@ -13,7 +13,7 @@ date; time bash final-setup.sh
 ## zarf package bb work
 ```sh
 # clone into workdir
-git clone --branch zarf-bb --recursive https://github.com/MxNxPx/mpenv workdir
+git clone --branch zarf-bb --recursive https://github.com/MxNxPx/mpenv workdir && cd workdir
 
 # build zarf
 cd zarf
