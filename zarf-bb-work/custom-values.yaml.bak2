@@ -1,0 +1,9 @@
+istio:
+  ingressGateways:
+    public-ingressgateway:
+      type: "NodePort"  #MxNxPx
+    passthrough-ingressgateway:
+      type: "NodePort"  #MxNxPx
+
+neuvector:
+  enabled: false  #MxNxPx

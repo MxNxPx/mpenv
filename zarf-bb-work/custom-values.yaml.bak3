@@ -12,29 +12,13 @@ kyvernopolicies:
   values:
     policies:
       restrict-host-path-mount:
-        parameters:
-          allow:
-           - /var/lib/rancher/k3s/storage/*
+        enabled: false
       restrict-host-path-mount-pv:
-        parameters:
-          allow:
-           - /var/lib/rancher/k3s/storage/*
+        enabled: false
       restrict-host-path-write:
-        parameters:
-          allow:
-           - /var/lib/rancher/k3s/storage/*
-
-#kyvernopolicies:
-#  values:
-#    policies:
-#      restrict-host-path-mount:
-#        enabled: false
-#      restrict-host-path-mount-pv:
-#        enabled: false
-#      restrict-host-path-write:
-#        enabled: false
-#      restrict-volume-types:
-#        enabled: false
+        enabled: false
+      restrict-volume-types:
+        enabled: false
 
 #kyvernopolicies:
 #  values:
