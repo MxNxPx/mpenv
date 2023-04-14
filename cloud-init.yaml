@@ -85,15 +85,14 @@ write_files:
       node-shell
       ns
       pod-dive
+      resource-snapshot
       stern
       view-secret
       whoami
   - path: /root/final-setup.sh
     content: |
-      echo "[*] MAKE SURE YOU EXPORT ENV VARS BEFORE DOING ANYTHING!!!"
+      echo "[*] OPTIONALLY CLONE THIS REPO..."
       echo "git clone https://repo1.dso.mil/platform-one/big-bang/bigbang /root/bigbang-upstream"
-      echo "git clone --branch bigbang-component https://github.com/defenseunicorns/zarf.git"
-      echo "git clone --branch bigbang-component https://github.com/defenseunicorns/zarf-package-big-bang"
       read -p "[*] Press any key to continue... " -n1 -s; echo
       asdfdsa
 runcmd:
@@ -104,6 +103,7 @@ runcmd:
 - echo '. /root/.asdf/asdf.sh' >> /root/.bashrc
 - echo '. /root/.asdf/completions/asdf.bash' >> /root/.bashrc
 - echo '. /root/.asdf/lib/asdf-bash-fun.bash' >> /root/.bashrc
+- echo 'export PATH="${PATH}:${HOME}/.krew/bin"' >> /root/.bashrc
 - curl -sLo /root/.asdf/lib/asdf-bash-fun.bash https://gist.githubusercontent.com/MxNxPx/0e68b32f399736a60bb53657bea11ca7/raw/asdf-bash-fun
 - curl -sLo /usr/local/share/demo-magic.sh https://raw.githubusercontent.com/paxtonhare/demo-magic/master/demo-magic.sh
 final_message: "[*] System setup complete | uptime: $UPTIME"
