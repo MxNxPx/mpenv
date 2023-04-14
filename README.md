@@ -14,7 +14,7 @@ date; time bash multipass-setup.sh
 multipass exec mpenv -- sudo bash
 
 # run final-setup script (asdf stuff)
-date; time bash final-setup.sh
+date; cd ../ && time bash final-setup.sh
 ```
 
 ## pull down zarf components
