@@ -1,12 +1,15 @@
-istio:
-  ingressGateways:
-    public-ingressgateway:
-      type: "NodePort"  #MxNxPx
-    passthrough-ingressgateway:
-      type: "NodePort"  #MxNxPx
-
 neuvector:
-  enabled: false  #MxNxPx
+#  enabled: false
+  values:
+    k3s:
+      enabled: true
+    istio:
+      enabled: true
+      neuvector:
+        gateways:
+          - istio-system/public
+      mtls:
+        mode: DISABLE
 
 kyvernopolicies:
   values:
@@ -24,6 +27,13 @@ kyvernopolicies:
           allow:
            - /var/lib/rancher/k3s/storage/*
 
+#istio:
+#  ingressGateways:
+#    public-ingressgateway:
+#      type: "NodePort"
+#    passthrough-ingressgateway:
+#      type: "NodePort"
+
 #kyvernopolicies:
 #  values:
 #    policies:
@@ -35,42 +45,3 @@ kyvernopolicies:
 #        enabled: false
 #      restrict-volume-types:
 #        enabled: false
-
-#kyvernopolicies:
-#  values:
-#    policies:
-#      restrict-host-path-mount:
-#        exclude:
-#          any:
-#          - resources:
-#              names:
-#              - monitoring-monitoring-grafana*
-#              namespaces:
-#              - monitoring
-#          - resources:
-#              names:
-#              - prometheus-monitoring-monitoring-kube-prometheus*
-#              namespaces:
-#              - monitoring
-#      restrict-volume-types:
-#        exclude:
-#          any:
-#          - resources:
-#              names:
-#              - monitoring-monitoring-grafana*
-#              namespaces:
-#              - monitoring
-#          - resources:
-#              names:
-#              - prometheus-monitoring-monitoring-kube-prometheus*
-#              namespaces:
-#              - monitoring
-#      restrict-host-path-mount-pv:
-#        exclude:
-#          any:
-#          - resources:
-#              names:
-#              - monitoring-monitoring-grafana*
-#          - resources:
-#              names:
-#              - prometheus-monitoring-monitoring-kube-prometheus*

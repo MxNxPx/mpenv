@@ -46,7 +46,7 @@ cp -fv ../../zarf-bb-work/custom-values.yaml .
 date; time zarf package create --architecture amd64 --confirm
 
 # cluster setup
-date; time k3d cluster create -v /etc/machine-id:/etc/machine-id
+date; time bash ../../mp-k3d-dev.sh
 date; time zarf init --confirm --components git-server
 
 # deploy bb

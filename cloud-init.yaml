@@ -1,6 +1,8 @@
 bootcmd:
   - "curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -"
   - "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -"
+  - "sed -ie '/GRUB_CMDLINE_LINUX=/s/\"\"/\"systemd.unified_cgroup_hierarchy=1\"/g' /etc/default/grub"
+  - "sudo update-grub"
 apt:
   sources:
     kubernetes:
@@ -96,6 +98,8 @@ write_files:
       read -p "[*] Press any key to continue... " -n1 -s; echo
       asdfdsa
 runcmd:
+- sed -ie '/GRUB_CMDLINE_LINUX=/s/\"\"/\"systemd.unified_cgroup_hierarchy=1\"/g' /etc/default/grub
+- sudo update-grub
 - sed -i '/^# end of pam-auth-update config/isession required        pam_limits.so' /etc/pam.d/common-session
 - printf "xt_REDIRECT\nxt_owner\nxt_statistic\n" | sudo tee -a /etc/modules
 - sysctl --system
@@ -106,4 +110,5 @@ runcmd:
 - echo 'export PATH="${PATH}:${HOME}/.krew/bin"' >> /root/.bashrc
 - curl -sLo /root/.asdf/lib/asdf-bash-fun.bash https://gist.githubusercontent.com/MxNxPx/0e68b32f399736a60bb53657bea11ca7/raw/asdf-bash-fun
 - curl -sLo /usr/local/share/demo-magic.sh https://raw.githubusercontent.com/paxtonhare/demo-magic/master/demo-magic.sh
+- reboot
 final_message: "[*] System setup complete | uptime: $UPTIME"
