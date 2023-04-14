@@ -11,8 +11,7 @@ git clone --recursive https://github.com/MxNxPx/mpenv && cd mpenv
 date; time bash multipass-setup.sh
 
 # shell into vm and swith to root user
-multipass shell mpenv
-sudo su -
+multipass exec mpenv -- sudo bash
 
 # run final-setup script (asdf stuff)
 date; time bash final-setup.sh
