@@ -1,2 +1,4 @@
 *.bak
+*.orig
 *creds.yaml*
+*zst

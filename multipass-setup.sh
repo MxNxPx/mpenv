@@ -1,8 +1,8 @@
 #!/bin/bash
 NAME=mpenv
 IMAGE=20.04
-CPU=8
-MEM=24G
+CPU=12
+MEM=48G
 DISK=99G
 ADD_ARGS=""
 #ADD_ARGS="-vvvv"

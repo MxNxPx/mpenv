@@ -14,10 +14,8 @@ packages:
   - docker-ce
   - docker-ce-cli
   - git
-  - golang
   - jq
   - make
-  - npm
   - pacman
   - pv
   - tmux
@@ -65,6 +63,7 @@ write_files:
       bottom 0.8.0
       direnv 2.32.2
       flux2 0.37.0
+      golang 1.19.6
       helm 3.10.2
       helm-diff 3.6.0
       helmfile 0.148.1
@@ -74,6 +73,7 @@ write_files:
       kubectl 1.25.4 system
       kube-dump 1.1.2 system #https://github.com/MxNxPx/asdf-kube-dump.git
       kustomize 4.5.7
+      nodejs 19.7.0
       nova 3.4.2
   - path: /root/krew-plugin-list.txt
     content: |
@@ -85,12 +85,13 @@ write_files:
       node-shell
       ns
       pod-dive
+      resource-snapshot
       stern
       view-secret
       whoami
   - path: /root/final-setup.sh
     content: |
-      echo "[*] MAKE SURE YOU EXPORT ENV VARS BEFORE DOING ANYTHING!!!"
+      echo "[*] OPTIONALLY CLONE THIS REPO..."
       echo "git clone https://repo1.dso.mil/platform-one/big-bang/bigbang /root/bigbang-upstream"
       read -p "[*] Press any key to continue... " -n1 -s; echo
       asdfdsa
@@ -102,6 +103,7 @@ runcmd:
 - echo '. /root/.asdf/asdf.sh' >> /root/.bashrc
 - echo '. /root/.asdf/completions/asdf.bash' >> /root/.bashrc
 - echo '. /root/.asdf/lib/asdf-bash-fun.bash' >> /root/.bashrc
+- echo 'export PATH="${PATH}:${HOME}/.krew/bin"' >> /root/.bashrc
 - curl -sLo /root/.asdf/lib/asdf-bash-fun.bash https://gist.githubusercontent.com/MxNxPx/0e68b32f399736a60bb53657bea11ca7/raw/asdf-bash-fun
 - curl -sLo /usr/local/share/demo-magic.sh https://raw.githubusercontent.com/paxtonhare/demo-magic/master/demo-magic.sh
 final_message: "[*] System setup complete | uptime: $UPTIME"
