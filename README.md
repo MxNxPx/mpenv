@@ -35,17 +35,18 @@ echo $REGISTRY1_PASSWORD | zarf tools registry login registry1.dso.mil --usernam
 set -o history
 
 # backup original files (for easier reverts)
-cd zarf-package-big-bang/defense-unicorns-distro
+cd mpenv/zarf-package-big-bang/defense-unicorns-distro
 cp -pfv zarf.yaml ../../zarf.yaml.orig && cp -pfv zarf-config.yaml ../../zarf-config.yaml.orig
 
 # patch the zarf.yaml
 sed -i '/^components:/ r ../../zarf-bb-work/zarf.yaml-other-images.patch' zarf.yaml && sed -i '/^\(.*\)- [^\n]*/,$!b;//{x;//p;g};//!H;$!d;x;s//&\n\1- custom-values.yaml/' zarf.yaml
+cp -fv ../../zarf-bb-work/custom-values.yaml .
 
 # create zarf package
 date; time zarf package create --architecture amd64 --confirm
 
 # cluster setup
-date; time k3d cluster create -v /etc/machine-id:/etc/machine-id
+date; time bash ../../mp-k3d-dev.sh
 date; time zarf init --confirm --components git-server
 
 # deploy bb
