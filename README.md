@@ -5,7 +5,7 @@ multipass dev environment
 
 ```sh
 # pull down this repo
-git clone --branch zarf-bb --recursive https://github.com/MxNxPx/mpenv && cd mpenv
+git clone --recursive https://github.com/MxNxPx/mpenv && cd mpenv
 
 # launch vm
 date; time bash multipass-setup.sh
