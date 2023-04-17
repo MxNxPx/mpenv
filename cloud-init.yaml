@@ -18,6 +18,7 @@ packages:
   - git
   - jq
   - make
+  - net-tools
   - pacman
   - pv
   - tmux
