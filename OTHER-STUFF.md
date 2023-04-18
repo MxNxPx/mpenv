@@ -3,7 +3,7 @@
 ## update local hosts with mpenv IP
 ```
 # looks for host entry in local hosts file and replaces IP with mpenv ip
-export MPENV_IP=$(multipass info mpenv --format json | jq -r '.info.mpenv.ipv4[0]') && sudo sed -i.bak -r "s/^ *[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+( +mpenv.bigbang.dev)/$MPENV_IP\1/" /etc/hosts
+export MPENV_IP=$(multipass info mpenv --format json | jq -r '.info.mpenv.ipv4[0]') && sudo sed -i.bak -r "s/^ *[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+( +mpenv.vm)/$MPENV_IP\1/" /etc/hosts
 ```
 
 ## zarf package bb work
