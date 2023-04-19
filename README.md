@@ -1,7 +1,7 @@
 # mpenv
 multipass dev environment
 
->[!WARNING]
+> **Warning**
 >
 > - System minimum compute requirements are at LEAST 48 GB RAM and 12 virtual CPU threads
 > - This Zarf package can only be built with the v0.25.2 or higher of https://github.com/defenseunicorns/zarf due to fixing [this issue](https://github.com/defenseunicorns/zarf/pull/1477)
