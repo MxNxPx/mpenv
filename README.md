@@ -24,7 +24,7 @@ date; cd ../ && time bash final-setup.sh
 
 ## pull down zarf components
 ```sh
-export ZARF_VER="v0.25.2"
+export ZARF_VER="v0.26.1"
 wget -P ~/.zarf-cache/ "https://github.com/defenseunicorns/zarf/releases/download/${ZARF_VER}/zarf-init-amd64-${ZARF_VER}.tar.zst"
 wget -O /usr/local/bin/zarf "https://github.com/defenseunicorns/zarf/releases/download/${ZARF_VER}/zarf_${ZARF_VER}_Linux_amd64" && chmod 755 /usr/local/bin/zarf
 ```

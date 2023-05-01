@@ -11,18 +11,21 @@ apt:
       source: "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
 package_update: true
 packages:
+  - colorized-logs
   - containerd.io
   - cowsay
   - docker-ce
   - docker-ce-cli
   - git
   - jq
+  - letsencrypt
   - make
   - net-tools
   - pacman
   - pv
   - tmux
   - tree
+  - socat
   - wget
 write_files:
   - path: /etc/sysctl.d/vm-max_map_count.conf
@@ -64,12 +67,14 @@ write_files:
       ##asdfdsa## asdf reshim
       bat 0.22.1
       bottom 0.8.0
+      cfssl 1.6.4
       direnv 2.32.2
       flux2 0.37.0
       golang 1.19.6
       helm 3.10.2
       helm-diff 3.6.0
       helmfile 0.148.1
+      istioctl 1.17.2
       k3d 5.4.6
       kind 0.17.0
       krew 0.4.3
@@ -90,6 +95,7 @@ write_files:
       pod-dive
       resource-snapshot
       stern
+      tail
       view-secret
       whoami
   - path: /root/final-setup.sh

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    zarf.dev/agent: ignore
+    istio-injection: enabled
+  name: podinfo
