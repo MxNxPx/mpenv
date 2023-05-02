@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  labels:
+  name: podinfo
+  namespace: podinfo
+spec:
+  gateways:
+  - istio-system/passthrough
+  hosts:
+  - podinfo-too.bigbang.dev
+  tls:
+  - match:
+    - sniHosts: ["podinfo-too.bigbang.dev"]
+    route:
+    - destination:
+        host: podinfo-too
+        port:
+          number: 9899
