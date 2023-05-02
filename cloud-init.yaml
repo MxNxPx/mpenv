@@ -81,6 +81,7 @@ write_files:
       kubectl 1.25.4 system
       kube-dump 1.1.2 system #https://github.com/MxNxPx/asdf-kube-dump.git
       kustomize 4.5.7
+      mkcert 1.4.4 
       nodejs 19.7.0
       nova 3.4.2
   - path: /root/krew-plugin-list.txt
