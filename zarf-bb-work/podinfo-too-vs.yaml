@@ -2,7 +2,7 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   labels:
-  name: podinfo
+  name: podinfo-too
   namespace: podinfo
 spec:
   gateways:
