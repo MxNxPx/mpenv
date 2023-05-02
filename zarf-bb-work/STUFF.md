@@ -39,6 +39,7 @@ kubectl create -f podinfo-ns.yaml
 # create secret
 mkcert podinfo.bigbang.dev
 kubectl -n podinfo create secret tls podinfo-tls-secret --key ./podinfo.bigbang.dev-key.pem  --cert ./podinfo.bigbang.dev.pem
+kubectl patch sa default -n podinfo -p '"imagePullSecrets": [{"name": "podinfo-tls-secret" }]'
 
 # helm install
 helm upgrade -i podinfo -n podinfo --set=tls.enabled=true,tls.secretName=podinfo-tls-secret oci://ghcr.io/stefanprodan/charts/podinfo
