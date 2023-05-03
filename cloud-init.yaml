@@ -106,6 +106,7 @@ write_files:
       read -p "[*] Press any key to continue... " -n1 -s; echo
       asdfdsa
       echo "source <(kubectl completion bash)" >> ~/.bashrc # add autocomplete permanently to your bash shell.
+      echo "source <(flux completion bash)" >> ~/.bashrc # add autocomplete permanently to your bash shell.
       echo "alias k=kubectl" >> ~/.bashrc
       echo "complete -o default -F __start_kubectl k" >> ~/.bashrc
 runcmd:
