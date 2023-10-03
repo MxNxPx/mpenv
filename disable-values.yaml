@@ -1,0 +1,25 @@
+grafana:
+  enabled: false
+istio:
+  enabled: false
+istioOperator:
+  enabled: false
+kiali:
+  enabled: false
+kyverno:
+  enabled: false
+kyvernoPolicies:
+  enabled: false
+kyvernoReporter:
+  enabled: false
+loki:
+  enabled: false
+monitoring:
+  enabled: false
+neuvector:
+  enabled: false
+promtail:
+  enabled: false
+tempo:
+  enabled: false
+
