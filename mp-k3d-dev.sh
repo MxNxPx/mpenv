@@ -54,7 +54,8 @@ k3d_command+=" --image ${K3S_IMAGE}"
 if [[ "$METAL_LB" == true ]]; then
   # create docker network for k3d cluster
   echo "creating docker network for k3d cluster"
-  docker network create k3d-network --driver=bridge --subnet=172.20.0.0/16 --gateway 172.20.0.1
+  #docker network create k3d-network --driver=bridge --subnet=172.20.0.0/16 --gateway 172.20.0.1
+  docker network create k3d-network --driver=bridge --subnet=172.28.0.0/16 --gateway 172.28.0.1
   k3d_command+=" --k3s-arg "--disable=servicelb@server:0" --network k3d-network"
 fi
 
@@ -82,11 +83,11 @@ if [[ "$METAL_LB" == true ]]; then
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: core-net-172.20.1.233-172.20.1.243
+  name: core-net-172.28.1.233-172.28.1.243
   namespace: metallb-system
 spec:
   addresses:
-  - 172.20.1.233-172.20.1.243
+  - 172.28.1.233-172.28.1.243
 ---
 apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
@@ -95,7 +96,7 @@ metadata:
   namespace: metallb-system
 spec:
   ipAddressPools:
-  - core-net-172.20.1.233-172.20.1.243
+  - core-net-172.28.1.233-172.28.1.243
 EOF
 
   kubectl wait deployment controller -n metallb-system --for condition=Available=True --timeout=90s

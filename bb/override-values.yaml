@@ -1,6 +1,0 @@
-loki:
-  enabled: true
-  values:
-    monolith:
-      rbac:
-        pspEnabled: false

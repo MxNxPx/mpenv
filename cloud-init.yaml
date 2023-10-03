@@ -65,25 +65,21 @@ write_files:
       ##asdfdsa## asdf direnv setup --shell bash --version latest
       ##asdfdsa## kubectl krew install < /root/krew-plugin-list.txt
       ##asdfdsa## asdf reshim
-      bat 0.22.1
+      bat 0.23.0
       bottom 0.8.0
-      cfssl 1.6.4
-      direnv 2.32.2
-      flux2 0.37.0
+      direnv 2.32.3
+      flux2 2.1.1
       golang 1.19.6
-      helm 3.10.2
-      helm-diff 3.6.0
-      helmfile 0.148.1
-      istioctl 1.17.2
-      k3d 5.4.6
-      kind 0.17.0
-      krew 0.4.3
-      kubectl 1.25.4 system
-      kube-dump 1.1.2 system #https://github.com/MxNxPx/asdf-kube-dump.git
+      helm 3.13.0
+      helm-diff 3.8.1
+      istioctl 1.19.1
+      k3d 5.6.0
+      kind 0.20.0
+      krew 0.4.4
+      kubectl 1.27.6 system
       kustomize 4.5.7
       mkcert 1.4.4 
       nodejs 19.7.0
-      nova 3.4.2
   - path: /root/krew-plugin-list.txt
     content: |
       ctx
@@ -111,7 +107,7 @@ runcmd:
 - sed -i '/^# end of pam-auth-update config/isession required        pam_limits.so' /etc/pam.d/common-session
 - printf "xt_REDIRECT\nxt_owner\nxt_statistic\n" | sudo tee -a /etc/modules
 - sysctl --system
-- git clone https://github.com/asdf-vm/asdf.git /root/.asdf --branch v0.10.2
+- git clone https://github.com/asdf-vm/asdf.git /root/.asdf --branch v0.13.1
 - echo '. /root/.asdf/asdf.sh' >> /root/.bashrc
 - echo '. /root/.asdf/completions/asdf.bash' >> /root/.bashrc
 - echo '. /root/.asdf/lib/asdf-bash-fun.bash' >> /root/.bashrc

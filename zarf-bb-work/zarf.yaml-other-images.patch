@@ -1,6 +1,0 @@
-  - name: other-images
-    required: true
-    # images missing from BB v1.56.0
-    images:
-      - registry1.dso.mil/ironbank/opensource/minio/operator:v4.5.4
-      - registry1.dso.mil/ironbank/opensource/minio/console:v0.21.3
