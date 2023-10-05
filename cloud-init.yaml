@@ -101,6 +101,10 @@ write_files:
       echo "git clone https://repo1.dso.mil/platform-one/big-bang/bigbang /root/bigbang-upstream"
       read -p "[*] Press any key to continue... " -n1 -s; echo
       asdfdsa
+      echo "source <(kubectl completion bash)" >> ~/.bashrc # add autocomplete permanently to your bash shell.
+      echo "source <(flux completion bash)" >> ~/.bashrc # add autocomplete permanently to your bash shell.
+      echo "alias k=kubectl" >> ~/.bashrc
+      echo "complete -o default -F __start_kubectl k" >> ~/.bashrc
 runcmd:
 - sed -ie '/GRUB_CMDLINE_LINUX=/s/\"\"/\"systemd.unified_cgroup_hierarchy=1\"/g' /etc/default/grub
 - sudo update-grub
@@ -111,6 +115,8 @@ runcmd:
 - echo '. /root/.asdf/asdf.sh' >> /root/.bashrc
 - echo '. /root/.asdf/completions/asdf.bash' >> /root/.bashrc
 - echo '. /root/.asdf/lib/asdf-bash-fun.bash' >> /root/.bashrc
+- echo 'export EDITOR=vi' >> /root/.bashrc
+- echo 'set -o vi' >> /root/.bashrc
 - echo 'export PATH="${PATH}:${HOME}/.krew/bin"' >> /root/.bashrc
 - curl -sLo /root/.asdf/lib/asdf-bash-fun.bash https://gist.githubusercontent.com/MxNxPx/0e68b32f399736a60bb53657bea11ca7/raw/asdf-bash-fun
 - curl -sLo /usr/local/share/demo-magic.sh https://raw.githubusercontent.com/paxtonhare/demo-magic/master/demo-magic.sh
